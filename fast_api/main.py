@@ -4,7 +4,7 @@ import json
 
 app = FastAPI()
 
-# this json data remains constants and requires no updation so we can store it globally instead of calling it at every request 
+# this json data remains constant and requires no updation so we can store it globally instead of calling it at every request 
 with open('fast_api/data.json', 'r') as f:
     file_data = json.load(f)
 
@@ -15,7 +15,7 @@ def root():
 @app.get("/id/{id}")
 def item(id):
     
-    # finding todo with the specific id form the list
+    # finding todo with the specific id from the list
     for todo in file_data:
         if todo['id'] == int(id): # because 'id' is a string
             return todo
