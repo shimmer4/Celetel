@@ -1,5 +1,6 @@
 import json
-
+import smtplib, ssl
+from email.message import EmailMessage
 
 def dump_data_to_db(input_data, type):
     with open('user_data', 'r') as f:
@@ -76,6 +77,31 @@ def forgor(data):
 
     for info in file_data:
         if data['email'] == info['email'] or data['email'] == info['username']:
+            send_mail(info['email'], info['password'])
             return (True, info['email'])
     
     else: return (False, "")
+
+
+
+
+def send_mail(email, passw):
+    print(f"sending mail to {email}")
+
+    try:
+        msg = EmailMessage()
+        msg["From"] = "tempmaildevesh@gmail.com"
+        msg["To"] = email
+        msg["Subject"] = "Recover Password"
+        msg.set_content(f"your password is : {passw}")
+
+        context=ssl.create_default_context()
+
+        with smtplib.SMTP_SSL("smtp.example.com", port=587, context=context) as smtp:
+            smtp.login(msg["From"], "password")
+            smtp.sendmail(msg["From"], msg["To"], msg.as_string())
+
+        print("email sent")
+
+    except:
+        print("couldnt send email")

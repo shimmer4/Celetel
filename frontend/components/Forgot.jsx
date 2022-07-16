@@ -25,7 +25,7 @@ function Forgot() {
             <form className={styles.form} onSubmit={handleSubmit}>
                 <h2>Forgot Password</h2>
                 {
-                    res.startsWith("mail sent at :") ? (
+                    res.startsWith("mail sent") ? (
                         <>
                             <input disabled className={styles.input} type="text" placeholder="enter email or username"></input>
                             <button disabled className={styles.button}>RECOVER</button>

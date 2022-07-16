@@ -61,7 +61,7 @@ def forgot_password(request):
 
         res, email = forgor(data)
         if res == True:
-            return HttpResponse(f"mail sent at : {email}")
+            return HttpResponse(f"mail sent to : {email}")
         else: return HttpResponse("this username/email doesnt have an account yet")
 
     return HttpResponse("forgot password page")
