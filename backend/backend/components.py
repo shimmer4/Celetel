@@ -22,7 +22,7 @@ def dump_data_to_db(input_data, type):
             else: return val_signup_info(input_data)
 
         if type == 'update':
-            user_exists = False  # cehecking if the user for who we need to update the password exists in the database
+            user_exists = False  # checking if the user for who we need to update the password exists in the database
             for info in file_data:
                 if (input_data['username'] == info["username"]) or (input_data['username'] == info["email"]): # user is found
                     user_exists = True
